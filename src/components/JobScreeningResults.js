@@ -55,7 +55,7 @@ function JobScreeningResults() {
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
+                    // 
                 },
                 credentials: 'include',
                 mode: 'cors'
@@ -173,7 +173,7 @@ function JobScreeningResults() {
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
+                    
                 },
                 credentials: 'include',
                 mode: 'cors',
@@ -244,7 +244,7 @@ function JobScreeningResults() {
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
-                    'Access-Control-Allow-Origin': '*'
+                    
                 },
                 credentials: 'include',
                 mode: 'cors',
