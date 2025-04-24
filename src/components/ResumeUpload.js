@@ -19,7 +19,7 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ErrorIcon from '@mui/icons-material/Error';
-import { uploadResumes } from '../services/api';
+import api, { uploadResumes } from '../services/api';
 import { extractTextFromPDF } from '../utils/pdfUtils';
 import { useJob } from '../context/JobContext';
 
