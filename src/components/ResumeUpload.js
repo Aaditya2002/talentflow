@@ -86,89 +86,67 @@ function ResumeUpload() {
     });
 
     const handleUpload = async () => {
-        setUploading(true);
-        setError(null);
-    
-        try {
-            const extractionPromises = files.map(async (fileObj) => {
-                const file = fileObj.file;
-                let text = '';
-    
-                // Extract text based on file type
-                if (file.type === 'application/pdf') {
-                    text = await extractTextFromPDF(file);
-                } else if (file.type.includes('word')) {
-                    const reader = new FileReader();
-                    text = await new Promise((resolve, reject) => {
-                        reader.onload = (e) => resolve(e.target.result);
-                        reader.onerror = (e) => reject(e);
-                        reader.readAsText(file);
-                    });
-                } else {
-                    text = await file.text();
-                }
-    
-                // Safely parse jobDescription
-                let jobDescriptionParsed;
-                try {
-                    if (typeof jobDescription === 'string') {
-                        jobDescriptionParsed = jobDescription.trim() ? JSON.parse(jobDescription) : {};
-                    } else {
-                        jobDescriptionParsed = jobDescription || {};
-                    }
-                } catch (parseError) {
-                    console.error('Error parsing job description:', parseError);
-                    jobDescriptionParsed = {};
-                }
-    
-                // Build payload
-                const payload = {
-                    resume_text: text,
-                    job_description: jobDescriptionParsed
-                };
-    
-                console.log('Sending payload:', payload); // Debug log
-    
-                // Send request
-                const response = await fetch("https://talentflow-backend.onrender.com/api/extract-resume-info", {
-                    method: "POST",
-                    headers: { 
-                        "Content-Type": "application/json",
-                        "Accept": "application/json",
-                        // "Access-Control-Allow-Origin": "*"
-                    },
-                    credentials: "include",
-                    mode: "cors",
-                    body: JSON.stringify(payload)
+    setUploading(true);
+    setError(null);
+
+    try {
+        const extractionPromises = files.map(async (fileObj) => {
+            const file = fileObj.file;
+            let text = '';
+
+            // Extract text based on file type
+            if (file.type === 'application/pdf') {
+                text = await extractTextFromPDF(file);
+            } else if (file.type.includes('word')) {
+                const reader = new FileReader();
+                text = await new Promise((resolve, reject) => {
+                    reader.onload = (e) => resolve(e.target.result);
+                    reader.onerror = (e) => reject(e);
+                    reader.readAsText(file);
                 });
-    
-                if (!response.ok) {
-                    const errorText = await response.text();
-                    console.error('Server response:', errorText);
-                    throw new Error(`Server responded with status ${response.status}: ${errorText}`);
+            } else {
+                text = await file.text();
+            }
+
+            // Safely parse jobDescription
+            let jobDescriptionParsed;
+            try {
+                if (typeof jobDescription === 'string') {
+                    jobDescriptionParsed = jobDescription.trim() ? JSON.parse(jobDescription) : {};
+                } else {
+                    jobDescriptionParsed = jobDescription || {};
                 }
-    
-                return await response.json();
-            });
-    
-            // Wait for all resumes to be processed
-            const results = await Promise.all(extractionPromises);
-            console.log("All resume extraction results:", results);
-    
-            // Stringify before storing
-            const jsonString = JSON.stringify(results);
-            updateResumeResults(jsonString);
-    
-            // Navigate to ResumeAnalysis
-            navigate('/analysis');
-        } catch (err) {
-            console.error("Upload error:", err);
-            setError(err.message);
-            alert(`An error occurred while processing resumes: ${err.message}`);
-        } finally {
-            setUploading(false);
-        }
-    };
+            } catch (parseError) {
+                console.error('Error parsing job description:', parseError);
+                jobDescriptionParsed = {};
+            }
+
+            const payload = {
+                resume_text: text,
+                job_description: jobDescriptionParsed
+            };
+
+            console.log('Sending payload:', payload);
+
+            const response = await api.post('/extract-resume-info', payload);
+            return response.data;
+        });
+
+        const results = await Promise.all(extractionPromises);
+        console.log("All resume extraction results:", results);
+
+        const jsonString = JSON.stringify(results);
+        updateResumeResults(jsonString);
+        navigate('/analysis');
+
+    } catch (err) {
+        console.error("Upload error:", err);
+        setError(err.message);
+        alert(`An error occurred while processing resumes: ${err.message}`);
+    } finally {
+        setUploading(false);
+    }
+};
     
       
 
