@@ -51,7 +51,7 @@ function JobScreeningResults() {
 
     const fetchData = async () => {
         try {
-            const response = await fetch("https://recruiteraiagentbackend-1.onrender.com/api/screen-results", {
+            const response = await fetch("https://talentflow-backend.onrender.com/api/screen-results", {
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
@@ -168,7 +168,7 @@ function JobScreeningResults() {
                 candidates: candidatesWithCredentials
             });
 
-            const response = await fetch('https://recruiteraiagentbackend-1.onrender.com/api/allcandidatesEmail', {
+            const response = await fetch('https://talentflow-backend.onrender.com/api/allcandidatesEmail', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -239,7 +239,7 @@ function JobScreeningResults() {
                 candidate: candidateWithCredentials
             });
 
-            const response = await fetch('https://recruiteraiagentbackend-1.onrender.com/api/candidateEmail', {
+            const response = await fetch('https://talentflow-backend.onrender.com/api/candidateEmail', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

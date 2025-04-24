@@ -14,7 +14,7 @@ const TempLoginPage = () => {
         console.log('Payload being sent to API:', JSON.stringify(payload, null, 2));
 
         try {
-            const response = await fetch('https://recruiteraiagentbackend-1.onrender.com/api/tempAuth', {
+            const response = await fetch('https://talentflow-backend.onrender.com/api/tempAuth', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

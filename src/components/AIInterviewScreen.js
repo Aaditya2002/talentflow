@@ -126,7 +126,7 @@ function AIInterviewScreen() {
 
             console.log('Sending interview data:', payload);
 
-            const response = await fetch('https://recruiteraiagentbackend-1.onrender.com/api/analyze-interview', {
+            const response = await fetch('https://talentflow-backend.onrender.com/api/analyze-interview', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -348,7 +348,7 @@ function AIInterviewScreen() {
                 console.log('Sending interview data:', payload);
 
                 // Make the API call with JSON data
-                const response = await fetch('https://recruiteraiagentbackend-1.onrender.com/api/analyze-interview', {
+                const response = await fetch('https://talentflow-backend.onrender.com/api/analyze-interview', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

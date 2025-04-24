@@ -55,7 +55,7 @@ The application uses the following API endpoints:
 - `POST /api/allcandidatesEmail`: Send notifications to multiple candidates
 - `POST /api/candidateEmail`: Send notification to a single candidate
 
-All API endpoints are configured to use the live backend service at `https://recruiteraiagentbackend-1.onrender.com`.
+All API endpoints are configured to use the live backend service at `https://talentflow-backend.onrender.com`.
 
 ## Key Components
 
@@ -80,7 +80,7 @@ All API endpoints are configured to use the live backend service at `https://rec
 Create a `.env` file in the root directory with the following variables:
 
 ```env
-REACT_APP_API_URL=https://recruiteraiagentbackend-1.onrender.com
+REACT_APP_API_URL=https://talentflow-backend.onrender.com
 ```
 
 ## Contributing

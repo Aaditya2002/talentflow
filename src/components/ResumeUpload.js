@@ -130,7 +130,7 @@ function ResumeUpload() {
                 console.log('Sending payload:', payload); // Debug log
     
                 // Send request
-                const response = await fetch("https://recruiteraiagentbackend-1.onrender.com/api/extract-resume-info", {
+                const response = await fetch("https://talentflow-backend.onrender.com/api/extract-resume-info", {
                     method: "POST",
                     headers: { 
                         "Content-Type": "application/json",

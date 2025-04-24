@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'https://recruiteraiagentbackend-1.onrender.com/api';
+const API_BASE_URL = 'https://talentflow-backend.onrender.com/api';
 
 const api = axios.create({
     baseURL: API_BASE_URL,
