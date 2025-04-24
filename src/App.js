@@ -45,11 +45,8 @@ const App = () => {
                                         <JobScreeningResults />
                                     </ProtectedRoute>
                                 } />
-                                <Route path="/interview" element={
-                                    <ProtectedRoute>
-                                        <AIInterviewScreen />
-                                    </ProtectedRoute>
-                                } />
+                                {/* Removed ProtectedRoute from /interview */}
+                                <Route path="/interview" element={<AIInterviewScreen />} />
                                 <Route path="/temp-login" element={<TempLoginPage />} />
                                 <Route path="/recruiter-timeline" element={
                                     <ProtectedRoute>
